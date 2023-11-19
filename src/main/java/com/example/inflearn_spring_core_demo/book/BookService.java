@@ -1,7 +1,7 @@
 package com.example.inflearn_spring_core_demo.book;
 
-import jakarta.annotation.PostConstruct;
 import java.util.Date;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
