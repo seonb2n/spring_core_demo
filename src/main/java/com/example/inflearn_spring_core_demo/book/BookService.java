@@ -11,16 +11,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookService {
 
+    @Autowired
+//    @Qualifier("yourBookRepository")
     private BookRepository bookRepository;
-
-    @Autowired(required = false)
-    public void setBookRepository(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+//    private BookRepository myBookRepository;
 
     public Book save(Book book) {
         book.setCreated(new Date());
         book.setBookStatus(BookStatus.DRAFT);
-        return bookRepository.save(book);
+        return book;
     }
 }
