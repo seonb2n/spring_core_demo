@@ -13,7 +13,8 @@ public class BookService {
 
     private BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository) {
+    @Autowired
+    public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
@@ -21,11 +22,5 @@ public class BookService {
         book.setCreated(new Date());
         book.setBookStatus(BookStatus.DRAFT);
         return bookRepository.save(book);
-    }
-
-    @PostConstruct
-    public void postConstruct() {
-        System.out.println("=========================");
-        System.out.println("Hello");
     }
 }
