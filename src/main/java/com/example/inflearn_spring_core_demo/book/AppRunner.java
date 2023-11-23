@@ -1,29 +1,26 @@
 package com.example.inflearn_spring_core_demo.book;
 
-import java.util.Arrays;
+import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.env.Environment;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AppRunner implements ApplicationRunner {
 
     @Autowired
-    ApplicationContext ctx;
-
-    @Value("${app.name")
-    String appName;
+    MessageSource messageSource;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Environment environment = ctx.getEnvironment();
-        System.out.println(environment.getProperty("app.name"));
-        System.out.println(environment.getProperty("app.about"));
+        //        System.out.println(messageSource.getClass());
 
-        System.out.println(appName);
+        while (true) {
+            System.out.println(messageSource.getMessage("greeting", new String[]{"myLife"}, Locale.KOREA));
+            System.out.println(messageSource.getMessage("greeting", new String[]{"myLife"}, Locale.US));
+            Thread.sleep(1000l);
+        }
     }
 }
