@@ -11,14 +11,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookService {
 
+    // AutowiredAnnotationBeanPostProcessor 가 해당하는 빈을 찾아서 의존성을 주입해줌
+    // Initializer 전에 해줌
     @Autowired
-//    @Qualifier("yourBookRepository")
-    private BookRepository bookRepository;
-//    private BookRepository myBookRepository;
+    BookRepository myBookRepository;
 
-    public Book save(Book book) {
-        book.setCreated(new Date());
-        book.setBookStatus(BookStatus.DRAFT);
-        return book;
+
+    // Runner는 애플리케이션이 구동되고 찍지만 라이프사이클 PostConstruct는 구동중에 찍음
+    @PostConstruct
+    public void setup() {
+        System.out.println(myBookRepository.getClass());
     }
 }
